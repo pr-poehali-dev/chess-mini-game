@@ -62,12 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Pixel Chess Colors
-				'pixel-orange': '#FF6B35',
-				'pixel-blue': '#004E89',
-				'pixel-dark': '#1A1A2E',
-				'pixel-cream': '#FFD23F',
-				'pixel-purple': '#8B5CF6'
+				// Pixel Chess Colors - Black & White
+				'pixel-orange': '#000000',
+				'pixel-blue': '#333333',
+				'pixel-dark': '#000000',
+				'pixel-cream': '#FFFFFF',
+				'pixel-purple': '#666666'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -92,8 +92,8 @@ export default {
 					}
 				},
 				'pixel-glow': {
-					'0%, 100%': { boxShadow: '0 0 5px #FF6B35' },
-					'50%': { boxShadow: '0 0 20px #FF6B35, 0 0 30px #FF6B35' }
+					'0%, 100%': { boxShadow: '0 0 5px #000000' },
+					'50%': { boxShadow: '0 0 20px #000000, 0 0 30px #000000' }
 				},
 				'bounce-piece': {
 					'0%, 100%': { transform: 'translateY(0)' },

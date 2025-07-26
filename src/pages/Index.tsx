@@ -60,15 +60,15 @@ const Index = () => {
   const isSquareSelected = (square: string) => selectedSquare === square;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pixel-dark via-pixel-blue to-pixel-dark">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-700 to-gray-900">
       {/* Header */}
-      <header className="p-4 border-b-4 border-pixel-orange bg-pixel-dark/90">
+      <header className="p-4 border-b-4 border-black bg-black/90">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="text-3xl font-pixel text-pixel-orange font-bold">
+            <div className="text-3xl font-pixel text-white font-bold">
               PIXEL CHESS
             </div>
-            <Badge className="bg-pixel-orange text-white font-pixel animate-pixel-glow">
+            <Badge className="bg-black text-white font-pixel animate-pixel-glow border border-white">
               v1.0
             </Badge>
           </div>
@@ -82,24 +82,24 @@ const Index = () => {
 
       <div className="container mx-auto p-6">
         <Tabs defaultValue="game" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 bg-pixel-dark border-2 border-pixel-orange">
-            <TabsTrigger value="game" className="font-pixel text-white data-[state=active]:bg-pixel-orange">
+          <TabsList className="grid w-full grid-cols-5 bg-black border-2 border-white">
+            <TabsTrigger value="game" className="font-pixel text-white data-[state=active]:bg-white data-[state=active]:text-black">
               <Icon name="GamepadIcon" size={16} className="mr-2" />
               Игра
             </TabsTrigger>
-            <TabsTrigger value="profile" className="font-pixel text-white data-[state=active]:bg-pixel-orange">
+            <TabsTrigger value="profile" className="font-pixel text-white data-[state=active]:bg-white data-[state=active]:text-black">
               <Icon name="User" size={16} className="mr-2" />
               Профиль
             </TabsTrigger>
-            <TabsTrigger value="rules" className="font-pixel text-white data-[state=active]:bg-pixel-orange">
+            <TabsTrigger value="rules" className="font-pixel text-white data-[state=active]:bg-white data-[state=active]:text-black">
               <Icon name="Book" size={16} className="mr-2" />
               Правила
             </TabsTrigger>
-            <TabsTrigger value="menu" className="font-pixel text-white data-[state=active]:bg-pixel-orange">
+            <TabsTrigger value="menu" className="font-pixel text-white data-[state=active]:bg-white data-[state=active]:text-black">
               <Icon name="Menu" size={16} className="mr-2" />
               Меню
             </TabsTrigger>
-            <TabsTrigger value="settings" className="font-pixel text-white data-[state=active]:bg-pixel-orange">
+            <TabsTrigger value="settings" className="font-pixel text-white data-[state=active]:bg-white data-[state=active]:text-black">
               <Icon name="Settings" size={16} className="mr-2" />
               Настройки
             </TabsTrigger>
@@ -110,14 +110,14 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Game Board */}
               <div className="lg:col-span-2">
-                <Card className="bg-pixel-dark border-4 border-pixel-orange shadow-2xl">
+                <Card className="bg-black border-4 border-white shadow-2xl">
                   <CardHeader>
-                    <CardTitle className="text-pixel-orange font-pixel text-center text-2xl">
+                    <CardTitle className="text-white font-pixel text-center text-2xl">
                       Игровое поле
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6">
-                    <div className="grid grid-cols-8 gap-1 aspect-square max-w-2xl mx-auto bg-pixel-cream p-4 border-4 border-pixel-orange">
+                    <div className="grid grid-cols-8 gap-1 aspect-square max-w-2xl mx-auto bg-white p-4 border-4 border-black">
                       {ranks.map(rank => 
                         files.map(file => {
                           const square = file + rank;
@@ -131,9 +131,9 @@ const Index = () => {
                               onClick={() => handleSquareClick(square)}
                               className={`
                                 aspect-square flex items-center justify-center text-4xl cursor-pointer
-                                border-2 border-pixel-dark/20 font-pixel transition-all duration-300
-                                ${isLight ? 'bg-pixel-cream' : 'bg-pixel-orange/30'}
-                                ${selected ? 'bg-pixel-purple animate-pixel-glow' : ''}
+                                border-2 border-black/20 font-pixel transition-all duration-300
+                                ${isLight ? 'bg-white' : 'bg-gray-300'}
+                                ${selected ? 'bg-gray-600 animate-pixel-glow' : ''}
                                 ${piece ? 'hover:animate-bounce-piece' : ''}
                                 hover:scale-105 hover:shadow-lg
                               `}
@@ -141,7 +141,7 @@ const Index = () => {
                               {piece && (
                                 <span className={`
                                   ${selected ? 'animate-bounce-piece' : ''}
-                                  ${piece.includes('♔♕♖♗♘♙') ? 'text-white' : 'text-pixel-dark'}
+                                  ${piece.includes('♔♕♖♗♘♙') ? 'text-white' : 'text-black'}
                                   drop-shadow-lg
                                 `}>
                                   {piece}
@@ -158,40 +158,40 @@ const Index = () => {
 
               {/* Game Stats & Controls */}
               <div className="space-y-6">
-                <Card className="bg-pixel-dark border-4 border-pixel-orange">
+                <Card className="bg-black border-4 border-white">
                   <CardHeader>
-                    <CardTitle className="text-pixel-orange font-pixel">Статистика игры</CardTitle>
+                    <CardTitle className="text-white font-pixel">Статистика игры</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-white font-pixel">
                       <div className="flex justify-between">
                         <span>Ходов сделано:</span>
-                        <Badge className="bg-pixel-orange">0</Badge>
+                        <Badge className="bg-black">0</Badge>
                       </div>
                     </div>
                     <div className="text-white font-pixel">
                       <div className="flex justify-between">
                         <span>Время игры:</span>
-                        <Badge className="bg-pixel-blue">00:00</Badge>
+                        <Badge className="bg-gray-600 text-white">00:00</Badge>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-pixel-dark border-4 border-pixel-orange">
+                <Card className="bg-black border-4 border-white">
                   <CardHeader>
-                    <CardTitle className="text-pixel-orange font-pixel">Управление</CardTitle>
+                    <CardTitle className="text-white font-pixel">Управление</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <Button className="w-full bg-pixel-orange hover:bg-pixel-orange/80 font-pixel text-white border-2 border-white">
+                    <Button className="w-full bg-black hover:bg-gray-800 font-pixel text-white border-2 border-white">
                       <Icon name="RotateCcw" size={16} className="mr-2" />
                       Отменить ход
                     </Button>
-                    <Button className="w-full bg-pixel-blue hover:bg-pixel-blue/80 font-pixel text-white border-2 border-white">
+                    <Button className="w-full bg-gray-600 hover:bg-gray-700 font-pixel text-white border-2 border-white">
                       <Icon name="Save" size={16} className="mr-2" />
                       Сохранить игру
                     </Button>
-                    <Button className="w-full bg-pixel-purple hover:bg-pixel-purple/80 font-pixel text-white border-2 border-white">
+                    <Button className="w-full bg-gray-800 hover:bg-gray-900 font-pixel text-white border-2 border-white">
                       <Icon name="RefreshCw" size={16} className="mr-2" />
                       Новая игра
                     </Button>
@@ -203,19 +203,19 @@ const Index = () => {
 
           {/* Profile Tab */}
           <TabsContent value="profile" className="mt-6">
-            <Card className="bg-pixel-dark border-4 border-pixel-orange">
+            <Card className="bg-black border-4 border-white">
               <CardHeader>
-                <CardTitle className="text-pixel-orange font-pixel text-2xl">Профиль игрока</CardTitle>
+                <CardTitle className="text-white font-pixel text-2xl">Профиль игрока</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="text-white font-pixel">
-                      <h3 className="text-pixel-cream text-lg mb-2">Статистика</h3>
+                      <h3 className="text-gray-300 text-lg mb-2">Статистика</h3>
                       <div className="space-y-2">
                         <div className="flex justify-between">
                           <span>Игр сыграно:</span>
-                          <Badge className="bg-pixel-orange">0</Badge>
+                          <Badge className="bg-black">0</Badge>
                         </div>
                         <div className="flex justify-between">
                           <span>Побед:</span>
@@ -230,9 +230,9 @@ const Index = () => {
                   </div>
                   <div className="space-y-4">
                     <div className="text-white font-pixel">
-                      <h3 className="text-pixel-cream text-lg mb-2">Достижения</h3>
+                      <h3 className="text-gray-300 text-lg mb-2">Достижения</h3>
                       <div className="grid grid-cols-2 gap-2">
-                        <Badge className="bg-pixel-blue text-xs p-2">🏆 Новичок</Badge>
+                        <Badge className="bg-gray-600 text-xs p-2">🏆 Новичок</Badge>
                         <Badge className="bg-gray-500 text-xs p-2">🎯 Снайпер</Badge>
                         <Badge className="bg-gray-500 text-xs p-2">⚡ Молния</Badge>
                         <Badge className="bg-gray-500 text-xs p-2">🧠 Стратег</Badge>
@@ -246,13 +246,13 @@ const Index = () => {
 
           {/* Rules Tab */}
           <TabsContent value="rules" className="mt-6">
-            <Card className="bg-pixel-dark border-4 border-pixel-orange">
+            <Card className="bg-black border-4 border-white">
               <CardHeader>
-                <CardTitle className="text-pixel-orange font-pixel text-2xl">Правила игры</CardTitle>
+                <CardTitle className="text-white font-pixel text-2xl">Правила игры</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-white font-pixel">
                 <div className="space-y-3">
-                  <h3 className="text-pixel-cream text-lg">Основные правила:</h3>
+                  <h3 className="text-gray-300 text-lg">Основные правила:</h3>
                   <ul className="space-y-2 list-disc list-inside">
                     <li>Клик по пешке - выбор</li>
                     <li>Клик на соседнюю клетку - перемещение</li>
@@ -261,7 +261,7 @@ const Index = () => {
                   </ul>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-pixel-cream text-lg">Правила пешек:</h3>
+                  <h3 className="text-gray-300 text-lg">Правила пешек:</h3>
                   <div className="space-y-2 text-sm">
                     <div>♙ Белые пешки - ходят в любом направлении на 1 клетку</div>
                     <div>♟ Черные пешки - ходят в любом направлении на 1 клетку</div>
@@ -275,25 +275,25 @@ const Index = () => {
 
           {/* Menu Tab */}
           <TabsContent value="menu" className="mt-6">
-            <Card className="bg-pixel-dark border-4 border-pixel-orange">
+            <Card className="bg-black border-4 border-white">
               <CardHeader>
-                <CardTitle className="text-pixel-orange font-pixel text-2xl">Главное меню</CardTitle>
+                <CardTitle className="text-white font-pixel text-2xl">Главное меню</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Button className="h-16 bg-pixel-orange hover:bg-pixel-orange/80 font-pixel text-white text-lg border-2 border-white">
+                  <Button className="h-16 bg-black hover:bg-black/80 font-pixel text-white text-lg border-2 border-white">
                     <Icon name="Play" size={24} className="mr-3" />
                     Новая игра
                   </Button>
-                  <Button className="h-16 bg-pixel-blue hover:bg-pixel-blue/80 font-pixel text-white text-lg border-2 border-white">
+                  <Button className="h-16 bg-gray-600 hover:bg-gray-600/80 font-pixel text-white text-lg border-2 border-white">
                     <Icon name="Upload" size={24} className="mr-3" />
                     Загрузить игру
                   </Button>
-                  <Button className="h-16 bg-pixel-purple hover:bg-pixel-purple/80 font-pixel text-white text-lg border-2 border-white">
+                  <Button className="h-16 bg-gray-800 hover:bg-gray-800/80 font-pixel text-white text-lg border-2 border-white">
                     <Icon name="Users" size={24} className="mr-3" />
                     Мультиплеер
                   </Button>
-                  <Button className="h-16 bg-pixel-cream hover:bg-pixel-cream/80 font-pixel text-pixel-dark text-lg border-2 border-pixel-dark">
+                  <Button className="h-16 bg-white text-black hover:bg-white text-black/80 font-pixel text-black text-lg border-2 border-pixel-dark">
                     <Icon name="Bot" size={24} className="mr-3" />
                     Против ИИ
                   </Button>
@@ -304,35 +304,35 @@ const Index = () => {
 
           {/* Settings Tab */}
           <TabsContent value="settings" className="mt-6">
-            <Card className="bg-pixel-dark border-4 border-pixel-orange">
+            <Card className="bg-black border-4 border-white">
               <CardHeader>
-                <CardTitle className="text-pixel-orange font-pixel text-2xl">Настройки</CardTitle>
+                <CardTitle className="text-white font-pixel text-2xl">Настройки</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    <h3 className="text-pixel-cream font-pixel text-lg">Графика</h3>
+                    <h3 className="text-gray-300 font-pixel text-lg">Графика</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center text-white font-pixel">
                         <span>Анимации:</span>
-                        <Button className="bg-pixel-orange hover:bg-pixel-orange/80 text-xs">ВКЛ</Button>
+                        <Button className="bg-black hover:bg-black/80 text-xs">ВКЛ</Button>
                       </div>
                       <div className="flex justify-between items-center text-white font-pixel">
                         <span>Эффекты:</span>
-                        <Button className="bg-pixel-orange hover:bg-pixel-orange/80 text-xs">ВКЛ</Button>
+                        <Button className="bg-black hover:bg-black/80 text-xs">ВКЛ</Button>
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-pixel-cream font-pixel text-lg">Звук</h3>
+                    <h3 className="text-gray-300 font-pixel text-lg">Звук</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center text-white font-pixel">
                         <span>Музыка:</span>
-                        <Button className="bg-pixel-blue hover:bg-pixel-blue/80 text-xs">ВЫКЛ</Button>
+                        <Button className="bg-gray-600 hover:bg-gray-600/80 text-xs">ВЫКЛ</Button>
                       </div>
                       <div className="flex justify-between items-center text-white font-pixel">
                         <span>Эффекты:</span>
-                        <Button className="bg-pixel-blue hover:bg-pixel-blue/80 text-xs">ВЫКЛ</Button>
+                        <Button className="bg-gray-600 hover:bg-gray-600/80 text-xs">ВЫКЛ</Button>
                       </div>
                     </div>
                   </div>
