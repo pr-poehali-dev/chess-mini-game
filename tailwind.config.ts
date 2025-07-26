@@ -61,7 +61,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Pixel Chess Colors
+				'pixel-orange': '#FF6B35',
+				'pixel-blue': '#004E89',
+				'pixel-dark': '#1A1A2E',
+				'pixel-cream': '#FFD23F',
+				'pixel-purple': '#8B5CF6'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +90,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pixel-glow': {
+					'0%, 100%': { boxShadow: '0 0 5px #FF6B35' },
+					'50%': { boxShadow: '0 0 20px #FF6B35, 0 0 30px #FF6B35' }
+				},
+				'bounce-piece': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pixel-glow': 'pixel-glow 2s ease-in-out infinite',
+				'bounce-piece': 'bounce-piece 0.5s ease-in-out',
+				'slide-in': 'slide-in 0.3s ease-out'
+			},
+			fontFamily: {
+				'pixel': ['Courier New', 'monospace']
 			}
 		}
 	},
