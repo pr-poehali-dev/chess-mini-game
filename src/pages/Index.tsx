@@ -9,12 +9,10 @@ const Index = () => {
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [currentPlayer, setCurrentPlayer] = useState<'white' | 'black'>('white');
 
-  // Initialize chess board with pieces
+  // Initialize board with only pawns
   const initialBoard = {
-    'a8': '♜', 'b8': '♞', 'c8': '♝', 'd8': '♛', 'e8': '♚', 'f8': '♝', 'g8': '♞', 'h8': '♜',
     'a7': '♟', 'b7': '♟', 'c7': '♟', 'd7': '♟', 'e7': '♟', 'f7': '♟', 'g7': '♟', 'h7': '♟',
-    'a2': '♙', 'b2': '♙', 'c2': '♙', 'd2': '♙', 'e2': '♙', 'f2': '♙', 'g2': '♙', 'h2': '♙',
-    'a1': '♖', 'b1': '♘', 'c1': '♗', 'd1': '♕', 'e1': '♔', 'f1': '♗', 'g1': '♘', 'h1': '♖'
+    'a2': '♙', 'b2': '♙', 'c2': '♙', 'd2': '♙', 'e2': '♙', 'f2': '♙', 'g2': '♙', 'h2': '♙'
   };
 
   const [board, setBoard] = useState(initialBoard);
@@ -22,19 +20,40 @@ const Index = () => {
   const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
   const ranks = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
+  // Check if move is valid (1 square in any direction)
+  const isValidMove = (from: string, to: string) => {
+    const fromFile = files.indexOf(from[0]);
+    const fromRank = ranks.indexOf(from[1]);
+    const toFile = files.indexOf(to[0]);
+    const toRank = ranks.indexOf(to[1]);
+    
+    const fileDiff = Math.abs(toFile - fromFile);
+    const rankDiff = Math.abs(toRank - fromRank);
+    
+    // Can move 1 square in any direction (including diagonally)
+    return fileDiff <= 1 && rankDiff <= 1 && (fileDiff + rankDiff > 0);
+  };
+
   const handleSquareClick = (square: string) => {
     if (selectedSquare) {
-      // Move piece
-      const newBoard = { ...board };
-      if (board[selectedSquare]) {
+      // Check if move is valid
+      if (board[selectedSquare] && isValidMove(selectedSquare, square)) {
+        const newBoard = { ...board };
         newBoard[square] = board[selectedSquare];
         delete newBoard[selectedSquare];
+        setBoard(newBoard);
+        setCurrentPlayer(currentPlayer === 'white' ? 'black' : 'white');
       }
-      setBoard(newBoard);
       setSelectedSquare(null);
-      setCurrentPlayer(currentPlayer === 'white' ? 'black' : 'white');
     } else {
-      setSelectedSquare(square);
+      // Only select if there's a piece and it belongs to current player
+      if (board[square]) {
+        const isWhitePiece = board[square] === '♙';
+        const isBlackPiece = board[square] === '♟';
+        if ((currentPlayer === 'white' && isWhitePiece) || (currentPlayer === 'black' && isBlackPiece)) {
+          setSelectedSquare(square);
+        }
+      }
     }
   };
 
@@ -235,21 +254,19 @@ const Index = () => {
                 <div className="space-y-3">
                   <h3 className="text-pixel-cream text-lg">Основные правила:</h3>
                   <ul className="space-y-2 list-disc list-inside">
-                    <li>Клик по фигуре - выбор</li>
-                    <li>Повторный клик - перемещение</li>
-                    <li>Цель - поставить мат королю противника</li>
+                    <li>Клик по пешке - выбор</li>
+                    <li>Клик на соседнюю клетку - перемещение</li>
+                    <li>Цель - захватить все пешки противника</li>
                     <li>Белые ходят первыми</li>
                   </ul>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-pixel-cream text-lg">Фигуры:</h3>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div>♔ Король - 1 клетка в любом направлении</div>
-                    <div>♕ Ферзь - любое количество клеток</div>
-                    <div>♖ Ладья - по прямой линии</div>
-                    <div>♗ Слон - по диагонали</div>
-                    <div>♘ Конь - буквой Г</div>
-                    <div>♙ Пешка - вперед на 1 клетку</div>
+                  <h3 className="text-pixel-cream text-lg">Правила пешек:</h3>
+                  <div className="space-y-2 text-sm">
+                    <div>♙ Белые пешки - ходят в любом направлении на 1 клетку</div>
+                    <div>♟ Черные пешки - ходят в любом направлении на 1 клетку</div>
+                    <div>🎯 Цель: захватить все пешки противника</div>
+                    <div>⚡ Можно ходить по диагонали, вперед, назад, в стороны</div>
                   </div>
                 </div>
               </CardContent>
